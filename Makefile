@@ -13,4 +13,4 @@ lint:
 	pylint --disable=R,C,E1120 hello.py
 
 test:
-	coverage run -m pytest -vv --cov=hello test_hello.py && coverage xml
+	coverage run -m pytest -vv --cov=hello --cov-report xml test_hello.py
