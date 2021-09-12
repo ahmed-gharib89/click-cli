@@ -63,7 +63,7 @@ jobs:
     - uses: aktions/codeclimate-test-reporter@v1
       with:
         codeclimate-test-reporter-id: 6a723436399696e6021d9542a372ef859aa4da6e1bdfb194befea30962c19a0f
-        command: make test
+        command: after-build -t lcov
 
 
 
