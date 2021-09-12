@@ -24,6 +24,8 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        env:
+          CC_TEST_REPORTER_ID: 6a723436399696e6021d9542a372ef859aa4da6e1bdfb194befea30962c19a0f
 
       - name: Set up python 3.8
         uses: actions/setup-python@v2
@@ -42,28 +44,18 @@ jobs:
         run: |
           make lint
 
+      - name: Setup Code Climate test-reporter
+        run: |
+          # download test reporter as a static binary
+          curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+          chmod +x ./cc-test-reporter
+
       - name: Run tests
         run: |
+          ./cc-test-reporter before-build
           make test
+          ./cc-test-reporter after-build --coverage-input-type CoveragePy
     
-  coverage:
-    needs: [ build ]
-    name: coverage
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up python 3.8
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: Install dependencies
-      run: |
-        make install
-    - uses: aktions/codeclimate-test-reporter@v1
-      with:
-        codeclimate-test-reporter-id: 6a723436399696e6021d9542a372ef859aa4da6e1bdfb194befea30962c19a0f
-        command: after-build -t .coverage
 
 
 
