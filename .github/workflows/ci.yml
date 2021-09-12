@@ -54,7 +54,7 @@ jobs:
         run: |
           ./cc-test-reporter before-build
           make test
-          ./cc-test-reporter after-build 
+          ./cc-test-reporter after-build --coverage-input-type coverage.py
     
 
 
