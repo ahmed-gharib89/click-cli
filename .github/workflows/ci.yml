@@ -60,11 +60,12 @@ jobs:
     - name: Install dependencies
       run: |
         make install
-    - uses: paambaati/codeclimate-action@v2.2.4
-      env:
-        CC_TEST_REPORTER_ID: 6a723436399696e6021d9542a372ef859aa4da6e1bdfb194befea30962c19a0f
+    - uses: aktions/codeclimate-test-reporter@v1
       with:
-        coverageCommand: make test
+        codeclimate-test-reporter-id: 6a723436399696e6021d9542a372ef859aa4da6e1bdfb194befea30962c19a0f
+        command: make test
+
+
 
       
       
