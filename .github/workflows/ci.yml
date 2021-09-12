@@ -24,8 +24,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        env:
-          CC_TEST_REPORTER_ID: 6a723436399696e6021d9542a372ef859aa4da6e1bdfb194befea30962c19a0f
 
       - name: Set up python 3.8
         uses: actions/setup-python@v2
@@ -51,6 +49,8 @@ jobs:
           chmod +x ./cc-test-reporter
 
       - name: Run tests
+        env:
+          CC_TEST_REPORTER_ID: 6a723436399696e6021d9542a372ef859aa4da6e1bdfb194befea30962c19a0f
         run: |
           ./cc-test-reporter before-build
           make test
