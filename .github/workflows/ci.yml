@@ -45,6 +45,26 @@ jobs:
       - name: Run tests
         run: |
           make test
+    
+  coverage:
+    needs: [ build ]
+    name: coverage
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: |
+        make install
+    - uses: paambaati/codeclimate-action@v2.2.4
+      env:
+        CC_TEST_REPORTER_ID: 6a723436399696e6021d9542a372ef859aa4da6e1bdfb194befea30962c19a0f
+      with:
+        coverageCommand: make test
 
       
       
