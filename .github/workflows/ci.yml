@@ -34,7 +34,11 @@ jobs:
         run: |
           make install
 
-      - name: Run lint
+      - name: Format the code
+        run: |
+          make format
+
+      - name: Run pylint
         run: |
           make lint
 
