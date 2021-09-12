@@ -14,3 +14,4 @@ lint:
 
 test:
 	coverage run -m pytest -vv --cov=hello test_hello.py
+	coverage xml
