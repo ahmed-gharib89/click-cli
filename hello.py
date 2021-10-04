@@ -10,7 +10,7 @@ import glob
 @click.option(
     "--path",
     default=".",
-    prompt="Enter the file path to search in!",
+    prompt="Enter the file path to search in!!",
     help="Path to search for files",
 )
 # Option to specify the file type
